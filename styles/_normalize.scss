@@ -40,7 +40,7 @@ dd {
   margin: 0 auto;
 }
 body {
-   background-color: #f4f4f4;
+  background-color: #f4f4f4;
   font-family: "IBM Plex Sans";
   min-height: 100vh;
   scroll-behavior: smooth;
@@ -52,6 +52,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: text;
+  margin: 0;
 }
 
 ul[class],
