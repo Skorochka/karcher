@@ -2,13 +2,15 @@
 
 :root {
   --primary-color: #2b2b2b;
+  --dark-color: rgb(0, 0, 0);
   --accent-color: rgb(255, 237, 0);
   --light-color: rgb(255, 255, 255);
   --hover-color: rgb(117, 117, 117);
+  --accent-dark-color: rgb(110, 110, 110);
 }
 
 body {
-  font-family: "Gilroy", sans-serif;
+  font-family: "ClanPro", sans-serif;
   background: #fff;
   color: var(--primary-color);
   line-height: 1.23;
@@ -17,7 +19,7 @@ body {
 
 @font-face {
   font-family: "ClanPro";
-  src: url("~/assets/fonts/FFClanProRgNarNews.TTF");
+  src: url("~/assets/fonts/FFClanProBlk.TTF");
   font-weight: 900;
   font-style: normal;
 }
@@ -36,7 +38,7 @@ body {
 }
 @font-face {
   font-family: "ClanPro";
-  src: url("~/assets/fonts/FFClanProRegular.TTF");
+  src: url("~/assets/fonts/FFClanProRgNarNews.TTF");
   font-weight: 400;
   font-style: normal;
 }

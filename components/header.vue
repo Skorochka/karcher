@@ -1,5 +1,5 @@
 <template lang="pug">
-    .header
+    .header(:class="{'type1': type === 1, 'type2': type === 2}")
         .header__nav
             n-link.header__logo(:to="('/')")
                 img(src="https://s1.kaercher-media.com/versions/2022.11.0/fileadmin/templates/kaercher2014/images/kaercher_logo.png")
@@ -12,7 +12,9 @@
 
 </template>
 <script>
-export default {};
+export default {
+  props: ["type"],
+};
 </script>
 <style lang="scss" scoped>
 .header {
@@ -20,7 +22,13 @@ export default {};
   align-items: center;
   justify-content: space-between;
   padding: 20px 90px;
-  border-bottom: 6px solid rgb(110, 110, 110);
+
+  &.type1 {
+    border-bottom: 6px solid rgb(237, 237, 237);
+  }
+  &.type2 {
+    border-bottom: 6px solid var(--accent-dark-color);
+  }
 
   &__logo {
     margin-right: 15px;
