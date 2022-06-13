@@ -1,0 +1,62 @@
+@import "./_normalize";
+
+:root {
+  --primary-color: rgb(43, 43, 43);
+  --accent-color: rgb(255, 237, 0);
+  --light-color: rgb(255, 255, 255);
+  --hover-color: rgb(117, 117, 117);
+}
+
+body {
+  font-family: "Gilroy", sans-serif;
+  background: #fff;
+  color: var(--primary-color);
+  line-height: 1.23;
+  font-size: 1.389vw;
+}
+
+@font-face {
+  font-family: "ClanPro";
+  src: url("~/assets/fonts/FFClanProRgNarNews.TTF");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "ClanPro";
+  src: url("~/assets/fonts/FFClanProBold.TTF");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClanPro";
+  src: url("~/assets/fonts/FFClanProMedium.TTF");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ClanPro";
+  src: url("~/assets/fonts/FFClanProRegular.TTF");
+  font-weight: 400;
+  font-style: normal;
+}
+
+.container {
+  width: 414px;
+  margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    width: 768px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1440px;
+  }
+  @media screen and (min-width: 1920px) {
+    width: 1920px;
+  }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
