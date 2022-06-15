@@ -1,11 +1,11 @@
 <template lang="pug">
-    .nav-card(v-if="info" :class="{'type1': info.type === 1, 'type2': info.type === 2}") 
+    .nav-card(v-if="info"  :class="{'type1': info.type === 1, 'type2': info.type === 2}") 
         .nav-card__img
             img(:src="info.img")
         .nav-card__info
             h2.nav-card__title {{info.title}}
             p.nav-card__subtitle {{info.subtitle}}
-            button.nav-card__btn Learn more
+            n-link.nav-card__btn(:to="(info.link)") Learn more
 </template>
 <script>
 export default {
@@ -79,6 +79,7 @@ export default {
   }
 
   &__btn {
+    display: inline-block;
     border: 2px solid;
     padding: 10px 20px;
     font-size: 16px;
