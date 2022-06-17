@@ -7,6 +7,25 @@ export const mutations = {
       }
     });
   },
+  UPDATE_BASKET(state, product) {
+    let obj = {
+      amount: 1,
+      product: product,
+      id: product.id,
+    };
+
+    if (state.basket.length === 0) {
+      state.basket.push(obj);
+    } else {
+      state.basket.forEach((el) => {
+        if (el.id === product.id) {
+          el.amount = el.amount + 1;
+        } else {
+          state.basket.push(obj);
+        }
+      });
+    }
+  },
 };
 export const state = () => ({
   productsList: [
@@ -60,12 +79,5 @@ export const state = () => ({
     },
   ],
   currentProduct: {},
-  basketTest: [
-    {
-      test: "jhgf",
-    },
-    {
-      test: "jhgf",
-    },
-  ],
+  basket: [],
 });

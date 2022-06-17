@@ -1,20 +1,23 @@
 <template lang="pug">
-    n-link.card(v-if="card" :to="('/product/' + card.id)")
-        .card__img 
-            img(v-if="card.img" :src="card.img")
-        h3.card__title(v-if="card.title") {{card.title}}
-        p.card__price(v-if="card.price") £{{card.price}}
-        .card__rating
-        p.card__desc(v-if="card.description") {{card.description}}
-        button.card__button  
+    .card(v-if="card" )
+        n-link.card__info(:to="('/product/' + card.id)")
+            .card__img 
+                img(v-if="card.img" :src="card.img")
+            h3.card__title(v-if="card.title") {{card.title}}
+            p.card__price(v-if="card.price") £{{card.price}}
+            .card__rating
+            p.card__desc(v-if="card.description") {{card.description}}
+        button.card__button(@click="addProductToBasket")
             span.icon
             span.text Add to basket
 </template>
 <script>
 export default {
   props: ["card"],
-  mounted() {
-    // console.log(this.card);
+  methods: {
+    addProductToBasket() {
+      this.$store.commit("app/UPDATE_BASKET", this.card);
+    },
   },
 };
 </script>
