@@ -60,4 +60,12 @@ export const state = () => ({
     },
   ],
   currentProduct: {},
+  basketTest: [
+    {
+      test: "jhgf",
+    },
+    {
+      test: "jhgf",
+    },
+  ],
 });

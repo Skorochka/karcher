@@ -32,9 +32,6 @@ export default {
     padding: 0 170px;
   }
 
-  &__main-img {
-  }
-
   &__small-imgs {
     border: 1px solid #f8f8f8;
     display: flex;
