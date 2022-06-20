@@ -2,8 +2,8 @@
     .list
         .list__title Cold water pressure washers
         .list__cards 
-            ProductCard(v-for="(card, i) in list" :key="i" :card="card")
-        .list__btn-more More products
+            ProductCard(v-for="(card, i) in listToShow()" :key="i" :card="card")
+        .list__btn-more(v-if="list.length > step * 8" @click="showMore") More products
 </template>
 <script>
 import ProductCard from "~/components/productCard.vue";
@@ -16,6 +16,21 @@ export default {
     return {
       step: 1,
     };
+  },
+  methods: {
+    listToShow() {
+      let x = 0;
+      let y = this.step * 8;
+
+      console.log(x, y);
+
+      let arr = this.list.slice(x, y);
+
+      return arr;
+    },
+    showMore() {
+      this.step = this.step + 1;
+    },
   },
 };
 </script>

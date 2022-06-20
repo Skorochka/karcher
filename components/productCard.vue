@@ -68,6 +68,7 @@ export default {
     font-size: 13px;
     font-weight: 400;
     color: var(--primary-color);
+    height: 80px;
   }
   &__button {
     width: 100%;
