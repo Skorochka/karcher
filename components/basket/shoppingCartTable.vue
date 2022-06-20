@@ -5,12 +5,12 @@
         .table__list
             .table__item(v-for="(product, i) in basket" :key="i")
                 .table__item-about 
-                    .table__item-about-img 
+                    n-link.table__item-about-img(:to="'/product/' + product.product.id")
                         img(:src="getImg(product)")
                     .table__item-about-wrap 
                         .table__item-about-title {{product.product.attributes.title}}
                         .table__item-about-text Delivery in 1-2 Working days (excl. weekends/hols)
-                        button.table__item-about-btn Remove
+                        button.table__item-about-btn(@click="removeProdFromCart(product.product.id)") Remove
                 .table__item-price £{{product.product.attributes.price}}
                 .table__item-quantity 
                     input( type="number" :data-id="product.product.id" :value="product.amount" @change="changeValue")
@@ -65,6 +65,9 @@ export default {
       let total =
         Number(product.amount) * Number(product.product.attributes.price);
       return total;
+    },
+    removeProdFromCart(id) {
+      this.$store.commit("app/REMOVE_PRODUCT_FROM_CART", id);
     },
   },
 };

@@ -1,11 +1,12 @@
 <template lang="pug">
     .product(v-if="currentProduct")
-        .product__images
-            .product__main-img
-                img(:src="getImg()")
-            //- .product__small-imgs
-            //-     .product__small-img(v-for="(img, i) in info.images" :key="i")
-            //-         img(:src="img.img")
+        .product__images(v-if="currentProduct.attributes")
+            VueSlickCarousel(:arrows="false" :dots="false" v-bind="settings" ref="photosSlider")
+              .product__main-img( v-for="(images, i) in currentProduct.attributes.images.data")
+                  img(:src="getImg(images)")
+            .product__btns-slider(@click="handlerSlide")
+                .product__btns-slider-left(data-name="left")
+                .product__btns-slider-right(data-name="right")
         .product__info
             .product__price(v-if="currentProduct.attributes") £{{currentProduct.attributes.price}}
             .product__delivery Delivery in 1-2 Working days (excl. weekends/hols)
@@ -16,14 +17,17 @@
 </template>
 <script>
 import { mapState } from "vuex";
+import VueSlickCarousel from "vue-slick-carousel";
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
 
 export default {
   props: ["info"],
   methods: {
-    getImg() {
-      if (this.currentProduct.attributes) {
+    getImg(image) {
+      if (image) {
         let url;
-        url = this.currentProduct.attributes.images.data[0].attributes.url;
+        url = image.attributes.url;
         let link = `https://91aa-212-111-203-155.ngrok.io${url}`;
         return link;
       } else {
@@ -33,11 +37,30 @@ export default {
     addProductToBasket() {
       this.$store.commit("app/UPDATE_BASKET", this.currentProduct);
     },
+    handlerSlide(e) {
+      console.log(e);
+      if (e.target.dataset.name === "left") {
+        this.$refs.photosSlider.prev();
+      } else if (e.target.dataset.name === "right") {
+        this.$refs.photosSlider.next();
+      }
+    },
   },
   computed: {
     ...mapState({
       currentProduct: (state) => state.app.currentProduct,
     }),
+  },
+  components: {
+    VueSlickCarousel,
+  },
+  data() {
+    return {
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    };
   },
 };
 </script>
@@ -51,7 +74,45 @@ export default {
 
   &__images {
     background-color: #fff;
-    padding: 0 170px;
+    // padding: 0 170px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  &__btns-slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    &-left {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 50%;
+      left: 25px;
+      z-index: 99;
+      margin-top: -20px;
+      background: #fff
+        url(https://s1.kaercher-media.com/versions/2022.12.0/static/img/carousel_arrows.png)
+        no-repeat 0 0;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    &-right {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 50%;
+      right: 25px;
+      z-index: 99;
+      margin-top: -20px;
+      background: #fff
+        url(https://s1.kaercher-media.com/versions/2022.12.0/static/img/carousel_arrows.png)
+        no-repeat 0 0;
+      background-color: rgba(255, 255, 255, 0.3);
+      background-position: right;
+    }
   }
 
   &__main-img {
@@ -66,22 +127,6 @@ export default {
     }
   }
 
-  &__small-imgs {
-    border: 1px solid #f8f8f8;
-    display: flex;
-  }
-  &__small-img {
-    width: 95px;
-    height: 65px;
-    overflow: hidden;
-
-    & img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
   &__info {
     padding: 20px;
   }

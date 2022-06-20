@@ -3,8 +3,8 @@
         .list__title Cold water pressure washers
         .list__cards 
             ProductCard(v-for="(card, i) in list" :key="i" :card="card")
+        .list__btn-more More products
 </template>
-
 <script>
 import ProductCard from "~/components/productCard.vue";
 export default {
@@ -12,6 +12,11 @@ export default {
     ProductCard,
   },
   props: ["list"],
+  data() {
+    return {
+      step: 1,
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -31,6 +36,17 @@ export default {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
+  }
+
+  &__btn-more {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid rgb(227, 227, 227);
+    margin-top: 40px;
   }
 }
 </style>

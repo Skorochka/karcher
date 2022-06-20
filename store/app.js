@@ -65,6 +65,8 @@ export const mutations = {
   UPDATE_SELECTED_PRODUCT(state, product) {
     console.log("product", product[0]);
     state.currentProduct = product[0];
+
+    console.log("productproductproductproduct", product[0]);
   },
   UPDATE_BASKET(state, prod) {
     let obj = {
@@ -104,6 +106,13 @@ export const mutations = {
         el.amount = data.value;
       }
     });
+  },
+  REMOVE_PRODUCT_FROM_CART(state, id) {
+    const indexOfObject = state.basket.findIndex((object) => {
+      return object.product.id === id;
+    });
+
+    state.basket.splice(indexOfObject, 1);
   },
 };
 export const state = () => ({
