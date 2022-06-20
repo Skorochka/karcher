@@ -11,7 +11,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
-  padding: 30px 90px;
+  padding: 30px 105px;
   background-color: var(--accent-color);
 
   //   &__subtitle {

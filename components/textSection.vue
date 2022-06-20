@@ -3,7 +3,7 @@
 </template>
 <style lang="scss" scoped>
 .text {
-  padding: 50px 90px;
+  padding: 50px 105px;
   font-weight: 400;
   font-size: 13px;
   line-height: 1.43;

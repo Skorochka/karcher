@@ -30,7 +30,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .info-icons {
-  padding: 30px 90px;
+  padding: 30px 105px;
 
   &__wraper {
     padding: 30px 0;

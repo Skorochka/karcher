@@ -43,7 +43,7 @@ export default {
       let amount = 0;
 
       this.basket.forEach((el) => {
-        amount = amount + el.amount;
+        amount = amount + Number(el.amount);
       });
 
       return amount;
@@ -75,7 +75,7 @@ export default {
   &__wrap {
     width: 100%;
     height: 100%;
-    padding: 0 90px;
+    padding: 0 105px;
 
     display: flex;
     align-items: center;

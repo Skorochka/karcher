@@ -10,7 +10,7 @@
             .product__price(v-if="currentProduct.attributes") £{{currentProduct.attributes.price}}
             .product__delivery Delivery in 1-2 Working days (excl. weekends/hols)
             .product__part-num Part number: {{info.partNum}}
-            button.product__button  
+            button.product__button(@click="addProductToBasket") 
                 span.icon
                 span.text Add to basket
 </template>
@@ -30,6 +30,9 @@ export default {
         return this.reserveImg;
       }
     },
+    addProductToBasket() {
+      this.$store.commit("app/UPDATE_BASKET", this.currentProduct);
+    },
   },
   computed: {
     ...mapState({
@@ -40,7 +43,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .product {
-  margin: 30px 90px;
+  margin: 30px 105px;
   border: 1px solid #f8f8f8;
   display: grid;
   grid-template-columns: 2fr 1fr;

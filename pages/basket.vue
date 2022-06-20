@@ -1,3 +1,33 @@
 <template lang="pug">
-    .basket hellooooo im here in backet
+    .basket 
+        BasketHeader
+        ShoppingCart
+        Footer
 </template>
+<script>
+import BasketHeader from "~/components/basket/basketHeader.vue";
+import ShoppingCart from "~/components/basket/shoppingCart.vue";
+import TotalBlock from "~/components/basket/totalBlock.vue";
+import Footer from "~/components/footer.vue";
+
+import { mapState } from "vuex";
+
+export default {
+  components: {
+    BasketHeader,
+    ShoppingCart,
+    TotalBlock,
+    Footer,
+  },
+  mounted() {
+    if (this.basket.length === 0) {
+      //   this.$router.replace({ path: "/" });
+    }
+  },
+  computed: {
+    ...mapState({
+      basket: (state) => state.app.basket,
+    }),
+  },
+};
+</script>

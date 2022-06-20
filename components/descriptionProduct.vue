@@ -21,7 +21,7 @@ export default {
 
   &__header {
     border-bottom: 1px solid rgb(238, 238, 238);
-    padding: 0 90px;
+    padding: 0 105px;
   }
   &__block {
     display: inline-block;
@@ -34,7 +34,7 @@ export default {
   }
 
   &__text {
-    padding: 0 90px;
+    padding: 0 105px;
     font-size: 13px;
     font-weight: 400;
     color: rgb(43, 43, 43);

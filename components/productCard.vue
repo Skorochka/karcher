@@ -19,10 +19,6 @@ export default {
       this.$store.commit("app/UPDATE_BASKET", this.card);
     },
     getImg() {
-      console.log(
-        "this.card.attributes.images.data",
-        this.card.attributes.images.data
-      );
       if (this.card.attributes.images.data) {
         let url;
         url = this.card.attributes.images.data[0].attributes.url;

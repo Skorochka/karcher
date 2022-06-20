@@ -16,7 +16,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .list {
-  padding: 30px 90px;
+  padding: 30px 105px;
 
   &__title {
     padding-bottom: 10px;

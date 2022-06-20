@@ -66,24 +66,44 @@ export const mutations = {
     console.log("product", product[0]);
     state.currentProduct = product[0];
   },
-  UPDATE_BASKET(state, product) {
+  UPDATE_BASKET(state, prod) {
     let obj = {
       amount: 1,
-      product: product,
-      id: product.id,
+      product: prod,
     };
 
     if (state.basket.length === 0) {
       state.basket.push(obj);
+      console.log("state.basket.length === 0");
     } else {
+      let find = false;
       state.basket.forEach((el) => {
-        if (el.id === product.id) {
-          el.amount = el.amount + 1;
-        } else {
-          state.basket.push(obj);
+        if (el.product.id === prod.id) {
+          find = true;
         }
       });
+
+      if (find) {
+        state.basket.forEach((el) => {
+          if (el.product.id === prod.id) {
+            el.amount = el.amount + 1;
+          }
+        });
+      } else {
+        state.basket.push(obj);
+      }
+
+      console.log(find);
+
+      console.log(state.basket);
     }
+  },
+  UPDATE_PRODUCT_VALUE(state, data) {
+    state.basket.forEach((el) => {
+      if (el.product.id == data.id) {
+        el.amount = data.value;
+      }
+    });
   },
 };
 export const state = () => ({
