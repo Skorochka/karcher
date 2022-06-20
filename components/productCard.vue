@@ -2,11 +2,11 @@
     .card(v-if="card" )
         n-link.card__info(:to="('/product/' + card.id)")
             .card__img 
-                img(v-if="card.img" :src="card.img")
-            h3.card__title(v-if="card.title") {{card.title}}
-            p.card__price(v-if="card.price") £{{card.price}}
+                img(:src="getImg()")
+            h3.card__title(v-if="card.attributes.title") {{card.attributes.title}}
+            p.card__price(v-if="card.attributes.price") £{{card.attributes.price}}
             .card__rating
-            p.card__desc(v-if="card.description") {{card.description}}
+            p.card__desc(v-if="card.attributes.description") {{card.attributes.description}}
         button.card__button(@click="addProductToBasket")
             span.icon
             span.text Add to basket
@@ -18,6 +18,25 @@ export default {
     addProductToBasket() {
       this.$store.commit("app/UPDATE_BASKET", this.card);
     },
+    getImg() {
+      console.log(
+        "this.card.attributes.images.data",
+        this.card.attributes.images.data
+      );
+      if (this.card.attributes.images.data) {
+        let url;
+        url = this.card.attributes.images.data[0].attributes.url;
+        let link = `https://91aa-212-111-203-155.ngrok.io${url}`;
+        return link;
+      } else {
+        return this.reserveImg;
+      }
+    },
+  },
+  data() {
+    return {
+      reserveImg: "/",
+    };
   },
 };
 </script>

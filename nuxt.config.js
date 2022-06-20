@@ -26,8 +26,11 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ["@nuxtjs/axios"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  axios: {
+    baseURL: "https://91aa-212-111-203-155.ngrok.io",
+  },
 };

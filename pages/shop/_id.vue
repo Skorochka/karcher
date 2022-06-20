@@ -35,13 +35,8 @@ export default {
   },
   mounted() {
     let slug = this.$route.params.id;
-    if (!slug) {
-      console.log("shop page");
-    } else if (slug === "professional") {
-      console.log(slug, "professional");
-    } else if (slug === "home-garden") {
-      console.log(slug, "home-garden");
-    }
+
+    this.$store.dispatch("app/getProducts", slug);
   },
 };
 </script>

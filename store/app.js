@@ -1,11 +1,70 @@
-export const actions = {};
-export const mutations = {
-  UPDATE_SELECTED_PRODUCT(state, id) {
-    state.productsList.forEach((el) => {
-      if (el.id == id) {
-        state.currentProduct = el;
-      }
+export const actions = {
+  async getProducts({ commit }, slug) {
+    const qs = require("qs");
+
+    let filters = {
+      filters: {},
+    };
+
+    if (slug == "professional") {
+      filters.filters.category = {
+        $eq: "professional",
+      };
+    }
+    if (slug == "home-garden") {
+      filters.filters.category = {
+        $eq: "home-garden",
+      };
+    }
+
+    let query = qs.stringify(filters, {
+      encodeValuesOnly: true, // prettify url
     });
+
+    try {
+      const response = await this.$axios.get(
+        `/api/products?populate=*&${query}`
+      );
+
+      commit("UPDATE_PRODUCTS_LIST", response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  async getOneProduct({ commit }, id) {
+    const qs = require("qs");
+
+    let filters = {
+      filters: {
+        id: {
+          $eq: id,
+        },
+      },
+    };
+
+    let query = qs.stringify(filters, {
+      encodeValuesOnly: true, // prettify url
+    });
+
+    try {
+      const response = await this.$axios.get(
+        `/api/products?populate=*&${query}`
+      );
+
+      commit("UPDATE_SELECTED_PRODUCT", response.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+};
+export const mutations = {
+  UPDATE_PRODUCTS_LIST(state, data) {
+    console.log("data", data);
+    state.productsList = data;
+  },
+  UPDATE_SELECTED_PRODUCT(state, product) {
+    console.log("product", product[0]);
+    state.currentProduct = product[0];
   },
   UPDATE_BASKET(state, product) {
     let obj = {
@@ -28,56 +87,7 @@ export const mutations = {
   },
 };
 export const state = () => ({
-  productsList: [
-    {
-      id: 1,
-      price: "1912.99",
-      title: "HD 7/12-4 M Plus",
-      description:
-        "The HD 7/12-4 M Plus, a powerful, robust and versatile cold water pressure washer with good accessory storage and perfect manoeuvrability for daily operation",
-      categoty: "",
-      img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-      images: [
-        {
-          img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-        },
-        {
-          img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-        },
-        {
-          img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-        },
-        {
-          img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-        },
-      ],
-      partNum: "1111",
-    },
-    {
-      id: 2,
-      price: "1912.99",
-      title: "HD 7/12-4 M Plus",
-      description:
-        "The HD 7/12-4 M Plus, a powerful, robust and versatile cold water pressure washer with good accessory storage and perfect manoeuvrability for daily operation",
-      categoty: "",
-      img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-      images: [
-        {
-          img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-        },
-        {
-          img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-        },
-        {
-          img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-        },
-        {
-          img: "https://s1.kaercher-media.com/products/15249390/main/1/d3.jpg",
-        },
-      ],
-      partNum: "1111",
-    },
-  ],
+  productsList: [],
   currentProduct: {},
   basket: [],
 });

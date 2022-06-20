@@ -1,13 +1,13 @@
 <template lang="pug">
-    .product(v-if="info")
+    .product(v-if="currentProduct")
         .product__images
             .product__main-img
-                img(:src="info.img")
-            .product__small-imgs
-                .product__small-img(v-for="(img, i) in info.images" :key="i")
-                    img(:src="img.img")
+                img(:src="getImg()")
+            //- .product__small-imgs
+            //-     .product__small-img(v-for="(img, i) in info.images" :key="i")
+            //-         img(:src="img.img")
         .product__info
-            .product__price £{{info.price}}
+            .product__price(v-if="currentProduct.attributes") £{{currentProduct.attributes.price}}
             .product__delivery Delivery in 1-2 Working days (excl. weekends/hols)
             .product__part-num Part number: {{info.partNum}}
             button.product__button  
@@ -15,8 +15,27 @@
                 span.text Add to basket
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
   props: ["info"],
+  methods: {
+    getImg() {
+      if (this.currentProduct.attributes) {
+        let url;
+        url = this.currentProduct.attributes.images.data[0].attributes.url;
+        let link = `https://91aa-212-111-203-155.ngrok.io${url}`;
+        return link;
+      } else {
+        return this.reserveImg;
+      }
+    },
+  },
+  computed: {
+    ...mapState({
+      currentProduct: (state) => state.app.currentProduct,
+    }),
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -30,6 +49,18 @@ export default {
   &__images {
     background-color: #fff;
     padding: 0 170px;
+  }
+
+  &__main-img {
+    width: 471px;
+    height: 471px;
+    overflow: hidden;
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 
   &__small-imgs {
