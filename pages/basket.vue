@@ -2,12 +2,15 @@
     .basket 
         BasketHeader
         ShoppingCart
+        Benefits
         Footer
 </template>
 <script>
 import BasketHeader from "~/components/basket/basketHeader.vue";
 import ShoppingCart from "~/components/basket/shoppingCart.vue";
 import TotalBlock from "~/components/basket/totalBlock.vue";
+import Benefits from "~/components/basket/benefits.vue";
+
 import Footer from "~/components/footer.vue";
 
 import { mapState } from "vuex";
@@ -17,6 +20,7 @@ export default {
     BasketHeader,
     ShoppingCart,
     TotalBlock,
+    Benefits,
     Footer,
   },
   mounted() {
