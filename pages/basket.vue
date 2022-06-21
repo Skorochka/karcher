@@ -20,8 +20,9 @@ export default {
     Footer,
   },
   mounted() {
-    if (this.basket.length === 0) {
-      //   this.$router.replace({ path: "/" });
+    if (this.basket.length === 0 && localStorage.lSData) {
+      let data = JSON.parse(localStorage.getItem("lSData"));
+      this.$store.dispatch("app/getProductsForCart", data);
     }
   },
   computed: {

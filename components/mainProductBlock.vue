@@ -28,7 +28,7 @@ export default {
       if (image) {
         let url;
         url = image.attributes.url;
-        let link = `https://91aa-212-111-203-155.ngrok.io${url}`;
+        let link = `https://4d19-176-105-101-170.ngrok.io${url}`;
         return link;
       } else {
         return this.reserveImg;

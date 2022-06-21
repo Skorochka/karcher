@@ -31,6 +31,6 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   axios: {
-    baseURL: "https://91aa-212-111-203-155.ngrok.io",
+    baseURL: "https://4d19-176-105-101-170.ngrok.io/",
   },
 };

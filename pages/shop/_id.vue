@@ -31,12 +31,18 @@ export default {
   computed: {
     ...mapState({
       list: (state) => state.app.productsList,
+      basket: (state) => state.app.basket,
     }),
   },
   mounted() {
     let slug = this.$route.params.id;
 
     this.$store.dispatch("app/getProducts", slug);
+
+    if (this.basket.length === 0 && localStorage.lSData) {
+      let data = JSON.parse(localStorage.getItem("lSData"));
+      this.$store.dispatch("app/getProductsForCart", data);
+    }
   },
 };
 </script>

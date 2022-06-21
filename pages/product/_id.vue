@@ -17,14 +17,20 @@ import Footer from "~/components/footer.vue";
 import { mapState } from "vuex";
 
 export default {
-  mounted() {
-    let id = this.$route.params.id;
-    this.$store.dispatch("app/getOneProduct", id);
-  },
   computed: {
     ...mapState({
       currentProduct: (state) => state.app.currentProduct,
+      basket: (state) => state.app.basket,
     }),
+  },
+  mounted() {
+    let id = this.$route.params.id;
+    this.$store.dispatch("app/getOneProduct", id);
+
+    if (this.basket.length === 0 && localStorage.lSData) {
+      let data = JSON.parse(localStorage.getItem("lSData"));
+      this.$store.dispatch("app/getProductsForCart", data);
+    }
   },
   components: {
     Header,

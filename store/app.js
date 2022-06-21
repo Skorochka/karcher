@@ -56,6 +56,34 @@ export const actions = {
       console.log(err);
     }
   },
+  async getProductsForCart({ commit }, data) {
+    console.log("actions", data);
+
+    commit("UPDATE_BASKET_FROM_LS", data);
+    // const qs = require("qs");
+
+    // let filters = {
+    //   filters: {
+    //     id: {
+    //       $eq: id,
+    //     },
+    //   },
+    // };
+
+    // let query = qs.stringify(filters, {
+    //   encodeValuesOnly: true, // prettify url
+    // });
+
+    // try {
+    //   const response = await this.$axios.get(
+    //     `/api/products?populate=*&${query}`
+    //   );
+
+    //   commit("UPDATE_SELECTED_PRODUCT", response.data.data);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+  },
 };
 export const mutations = {
   UPDATE_PRODUCTS_LIST(state, data) {
@@ -76,7 +104,6 @@ export const mutations = {
 
     if (state.basket.length === 0) {
       state.basket.push(obj);
-      console.log("state.basket.length === 0");
     } else {
       let find = false;
       state.basket.forEach((el) => {
@@ -94,11 +121,11 @@ export const mutations = {
       } else {
         state.basket.push(obj);
       }
-
-      console.log(find);
-
-      console.log(state.basket);
     }
+
+    let x = JSON.stringify(state.basket);
+
+    localStorage.setItem("lSData", x);
   },
   UPDATE_PRODUCT_VALUE(state, data) {
     state.basket.forEach((el) => {
@@ -113,6 +140,12 @@ export const mutations = {
     });
 
     state.basket.splice(indexOfObject, 1);
+
+    let dataCartToLS = JSON.stringify(state.basket);
+    localStorage.setItem("lSData", dataCartToLS);
+  },
+  UPDATE_BASKET_FROM_LS(state, data) {
+    state.basket = data;
   },
 };
 export const state = () => ({

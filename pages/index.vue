@@ -18,6 +18,8 @@ import OptionsSection from "~/components/optionsSection.vue";
 import TextSection from "~/components/textSection.vue";
 import Footer from "~/components/footer.vue";
 
+import { mapState } from "vuex";
+
 export default {
   name: "IndexPage",
   components: {
@@ -28,6 +30,17 @@ export default {
     OptionsSection,
     TextSection,
     Footer,
+  },
+  computed: {
+    ...mapState({
+      basket: (state) => state.app.basket,
+    }),
+  },
+  mounted() {
+    if (this.basket.length === 0 && localStorage.lSData) {
+      let data = JSON.parse(localStorage.getItem("lSData"));
+      this.$store.dispatch("app/getProductsForCart", data);
+    }
   },
 };
 </script>
