@@ -16,14 +16,14 @@ export default {
           title: "Home & Garden",
           subtitle: "Cleaning devices for use around the home",
           link: "/shop/home-garden",
-          img: "https://s1.kaercher-media.com/media/image/file/91137/d2/neu_hg_13_schlauch.webp",
+          img: require("~/assets/images/neu_hg_13_schlauch.webp"),
         },
         {
           type: 2,
           title: "Professional",
           subtitle: "Cleaning machines for professional use",
           link: "/shop/professional",
-          img: "https://s1.kaercher-media.com/media/image/file/91175/d2/neu_prof_07_luftreiniger.webp",
+          img: require("~/assets/images/neu_prof_07_luftreiniger.webp"),
         },
       ],
     };

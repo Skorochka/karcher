@@ -12,15 +12,15 @@ export default {
     return {
       list: [
         {
-          img: "https://s1.kaercher-media.com/media/file/45411/delivery.png",
+          img: require("~/assets/images/delivery.png"),
           text: "<span> FREE UK Delivery </span> on orders over £50",
         },
         {
-          img: "https://s1.kaercher-media.com/media/file/45412/expertadvice.png",
+          img: require("~/assets/images/expertadvice.png"),
           text: "Expert advice and support",
         },
         {
-          img: "https://s1.kaercher-media.com/media/file/62822/1year_guarantee_html.png",
+          img: require("~/assets/images/1year_guarantee_html.png"),
           text: "+1 extra year guarantee <br/> on Home & Garden machines",
         },
       ],

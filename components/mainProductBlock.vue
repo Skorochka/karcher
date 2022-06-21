@@ -94,9 +94,7 @@ export default {
       left: 25px;
       z-index: 99;
       margin-top: -20px;
-      background: #fff
-        url(https://s1.kaercher-media.com/versions/2022.12.0/static/img/carousel_arrows.png)
-        no-repeat 0 0;
+      background: #fff url(../assets/images/carousel_arrows.png) no-repeat 0 0;
       background-color: rgba(255, 255, 255, 0.3);
     }
     &-right {
@@ -107,9 +105,7 @@ export default {
       right: 25px;
       z-index: 99;
       margin-top: -20px;
-      background: #fff
-        url(https://s1.kaercher-media.com/versions/2022.12.0/static/img/carousel_arrows.png)
-        no-repeat 0 0;
+      background: #fff url(../assets/images/carousel_arrows.png) no-repeat 0 0;
       background-color: rgba(255, 255, 255, 0.3);
       background-position: right;
     }
@@ -168,9 +164,7 @@ export default {
       display: inline-block;
       width: 21px;
       height: 18px;
-      background: transparent
-        url(https://s1.kaercher-media.com/versions/2022.12.0/static/img/sprites/sprite.png)
-        no-repeat -20px -110px;
+      background: transparent url(../assets/images/sprite.png) no-repeat -20px -110px;
       overflow: hidden;
       text-indent: -999px;
       vertical-align: middle;

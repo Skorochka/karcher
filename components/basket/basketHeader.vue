@@ -3,7 +3,7 @@
         .header__wrap
             .header__nav
                 n-link.header__logo(:to="('/')")
-                    img(src="https://s1.kaercher-media.com/versions/2022.11.0/fileadmin/templates/kaercher2014/images/kaercher_logo.png")
+                    img(src="~/assets/images/kaercher_logo.png")
                 .header__name Online shop
 </template>
 <script>

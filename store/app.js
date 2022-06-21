@@ -85,6 +85,11 @@ export const actions = {
     // }
   },
 };
+
+const setBasketToLS = (basket) => {
+  localStorage.setItem("lSData", JSON.stringify(basket));
+};
+
 export const mutations = {
   UPDATE_PRODUCTS_LIST(state, data) {
     console.log("data", data);
@@ -102,30 +107,36 @@ export const mutations = {
       product: prod,
     };
 
-    if (state.basket.length === 0) {
+    // if (state.basket.length === 0) {
+    //   state.basket.push(obj);
+    // } else {
+    //   let find = false;
+    //   state.basket.forEach((el) => {
+    //     if (el.product.id === prod.id) {
+    //       find = true;
+    //     }
+    //   });
+
+    //   if (find) {
+    //     state.basket.forEach((el) => {
+    //       if (el.product.id === prod.id) {
+    //         el.amount = el.amount + 1;
+    //       }
+    //     });
+    //   } else {
+    //     state.basket.push(obj);
+    //   }
+    // }
+    const basketInd = state.basket.findIndex(
+      (item) => item.product.id === prod.id
+    );
+    if (basketInd === -1) {
       state.basket.push(obj);
     } else {
-      let find = false;
-      state.basket.forEach((el) => {
-        if (el.product.id === prod.id) {
-          find = true;
-        }
-      });
-
-      if (find) {
-        state.basket.forEach((el) => {
-          if (el.product.id === prod.id) {
-            el.amount = el.amount + 1;
-          }
-        });
-      } else {
-        state.basket.push(obj);
-      }
+      ++state.basket[basketInd].amount;
     }
 
-    let x = JSON.stringify(state.basket);
-
-    localStorage.setItem("lSData", x);
+    setBasketToLS(state.basket);
   },
   UPDATE_PRODUCT_VALUE(state, data) {
     state.basket.forEach((el) => {
@@ -141,8 +152,7 @@ export const mutations = {
 
     state.basket.splice(indexOfObject, 1);
 
-    let dataCartToLS = JSON.stringify(state.basket);
-    localStorage.setItem("lSData", dataCartToLS);
+    setBasketToLS(state.basket);
   },
   UPDATE_BASKET_FROM_LS(state, data) {
     state.basket = data;

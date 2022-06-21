@@ -8,8 +8,8 @@ export default {
   data() {
     return {
       info: [
-        "https://s1.kaercher-media.com/media/image/selection/112572/d2/outdoor-vac.webp",
-        "https://s1.kaercher-media.com/media/image/selection/107997/d2/hpw-wow-home-page.webp",
+        require("~/assets/images/outdoor-vac.webp"),
+        require("~/assets/images/hpw-wow-home-page.webp"),
       ],
     };
   },

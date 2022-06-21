@@ -3,15 +3,15 @@
         .header__wrap
             .header__nav
                 n-link.header__logo(:to="('/')")
-                    img(src="https://s1.kaercher-media.com/versions/2022.11.0/fileadmin/templates/kaercher2014/images/kaercher_logo.png")
+                    img(src="~/assets/images/kaercher_logo.png")
                 .header__links
                     n-link.header__nav-item(:to="('/shop/home-garden')") Home & Garden
                     n-link.header__nav-item(:to="('/shop/professional')") Professional
                     n-link.header__nav-item(:to="('/shop')") shop
             .header__basket(@click="handlerBasketClick")
-                .header__basket-amount(v-if="basket.length > 0") {{amountProductsInBasket()}}
+                .header__basket-amount(v-if="basket.length > 0") {{ amountProductsInBasket }}
                 .header__basket-icon
-                    img(src="https://s1.kaercher-media.com/versions/2022.11.0/static/img/picto_target_group_retail_oth_3_CI15_RGB.svg")
+                    img(src="~/assets/images/picto_target_group_retail_oth_3_CI15_RGB.svg")
         .header__basket-popup(:class="{'show': showPopup && basket.length === 0}")
             h3.header__basket-popup-title Basket
             p.header__basket-popup-subtitle Your basket is empty.
@@ -27,6 +27,15 @@ export default {
     ...mapState({
       basket: (state) => state.app.basket,
     }),
+    amountProductsInBasket() {
+      let amount = 0;
+
+      this.basket.forEach((el) => {
+        amount += Number(el.amount);
+      });
+
+      return amount;
+    },
   },
   methods: {
     handlerBasketClick() {
@@ -38,15 +47,6 @@ export default {
     },
     closePopup() {
       this.showPopup = !this.showPopup;
-    },
-    amountProductsInBasket() {
-      let amount = 0;
-
-      this.basket.forEach((el) => {
-        amount = amount + Number(el.amount);
-      });
-
-      return amount;
     },
   },
   data() {

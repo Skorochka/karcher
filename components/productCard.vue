@@ -91,9 +91,7 @@ export default {
       display: inline-block;
       width: 21px;
       height: 18px;
-      background: transparent
-        url(https://s1.kaercher-media.com/versions/2022.12.0/static/img/sprites/sprite.png)
-        no-repeat -20px -110px;
+      background: transparent url(../assets/images/sprite.png) no-repeat -20px -110px;
       overflow: hidden;
       text-indent: -999px;
       vertical-align: middle;
