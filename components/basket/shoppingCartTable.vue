@@ -48,7 +48,7 @@ export default {
       if (product.product.attributes.images.data) {
         let url;
         url = product.product.attributes.images.data[0].attributes.url;
-        let link = `https://2a59-109-95-35-76.ngrok.io${url}`;
+        let link = `https://df5a-109-95-35-76.ngrok.io${url}`;
         return link;
       } else {
         return this.reserveImg;

@@ -2,6 +2,8 @@ export const actions = {
   async getProducts({ commit }, slug) {
     const qs = require("qs");
 
+    // console.log("heloooooo", slug);
+
     let filters = {
       filters: {},
     };
@@ -21,10 +23,15 @@ export const actions = {
       encodeValuesOnly: true, // prettify url
     });
 
+    // console.log("query", query);
+
     try {
+      // console.log("fhggfggff", this.$axios);
+      // console.log("fhggfggff--", $axios);
       const response = await this.$axios.get(
         `/api/products?populate=*&${query}`
       );
+      console.log("response", response);
 
       commit("UPDATE_PRODUCTS_LIST", response.data.data);
     } catch (err) {
@@ -56,33 +63,11 @@ export const actions = {
       console.log(err);
     }
   },
-  async getProductsForCart({ commit }, data) {
-    console.log("actions", data);
-
-    commit("UPDATE_BASKET_FROM_LS", data);
-    // const qs = require("qs");
-
-    // let filters = {
-    //   filters: {
-    //     id: {
-    //       $eq: id,
-    //     },
-    //   },
-    // };
-
-    // let query = qs.stringify(filters, {
-    //   encodeValuesOnly: true, // prettify url
-    // });
-
-    // try {
-    //   const response = await this.$axios.get(
-    //     `/api/products?populate=*&${query}`
-    //   );
-
-    //   commit("UPDATE_SELECTED_PRODUCT", response.data.data);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+  async getProductsForCart({ commit }) {
+    if (localStorage.getItem("lSData")) {
+      let data = JSON.parse(localStorage.getItem("lSData"));
+      commit("UPDATE_BASKET_FROM_LS", data);
+    }
   },
 };
 
@@ -163,3 +148,8 @@ export const state = () => ({
   currentProduct: {},
   basket: [],
 });
+export const getters = {
+  getBasket(state) {
+    return state.basket;
+  },
+};

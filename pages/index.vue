@@ -42,6 +42,14 @@ export default {
       this.$store.dispatch("app/getProductsForCart", data);
     }
   },
+  // async asyncData({ $api, route, store }) {
+  //   if (store.state.app.basket.length === 0) {
+  //     store.dispatch("app/getProductsForCart");
+  //   }
+  //   return {
+  //     // comp,
+  //   };
+  // },
 };
 </script>
 

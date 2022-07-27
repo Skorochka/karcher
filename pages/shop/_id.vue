@@ -34,15 +34,26 @@ export default {
       basket: (state) => state.app.basket,
     }),
   },
-  mounted() {
-    let slug = this.$route.params.id;
+  // mounted() {
+  //   let slug = this.$route.params.id;
 
-    this.$store.dispatch("app/getProducts", slug);
+  //   this.$store.dispatch("app/getProducts", slug);
 
-    if (this.basket.length === 0 && localStorage.lSData) {
-      let data = JSON.parse(localStorage.getItem("lSData"));
-      this.$store.dispatch("app/getProductsForCart", data);
+  //   if (this.basket.length === 0 && localStorage.lSData) {
+  //     let data = JSON.parse(localStorage.getItem("lSData"));
+  //     this.$store.dispatch("app/getProductsForCart", data);
+  //   }
+  // },
+  async asyncData({ $api, route, store }) {
+    let slug = route.params.id;
+    store.dispatch("app/getProducts", slug);
+
+    if (store.state.app.basket.length === 0) {
+      store.dispatch("app/getProductsForCart");
     }
+    return {
+      // comp,
+    };
   },
 };
 </script>

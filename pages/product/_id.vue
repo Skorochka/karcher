@@ -23,14 +23,25 @@ export default {
       basket: (state) => state.app.basket,
     }),
   },
-  mounted() {
-    let id = this.$route.params.id;
-    this.$store.dispatch("app/getOneProduct", id);
+  async asyncData({ $api, route, store }) {
+    let id = route.params.id;
+    store.dispatch("app/getOneProduct", id);
 
-    if (this.basket.length === 0 && localStorage.lSData) {
-      let data = JSON.parse(localStorage.getItem("lSData"));
-      this.$store.dispatch("app/getProductsForCart", data);
+    if (store.state.app.basket.length === 0) {
+      store.dispatch("app/getProductsForCart");
     }
+
+    return {
+      // comp,
+    };
+  },
+  mounted() {
+    // let id = this.$route.params.id;
+    // this.$store.dispatch("app/getOneProduct", id);
+    // if (this.basket.length === 0 && localStorage.lSData) {
+    //   let data = JSON.parse(localStorage.getItem("lSData"));
+    //   this.$store.dispatch("app/getProductsForCart", data);
+    // }
   },
   components: {
     Header,
