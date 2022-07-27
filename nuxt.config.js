@@ -1,5 +1,6 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  target: "static",
   head: {
     title: "karcher",
     htmlAttrs: {
@@ -31,6 +32,6 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   axios: {
-    baseURL: "https://4d19-176-105-101-170.ngrok.io/",
+    baseURL: "https://2a59-109-95-35-76.ngrok.io",
   },
 };

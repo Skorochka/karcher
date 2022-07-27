@@ -22,7 +22,7 @@ export default {
       if (this.card.attributes.images.data) {
         let url;
         url = this.card.attributes.images.data[0].attributes.url;
-        let link = `https://4d19-176-105-101-170.ngrok.io${url}`;
+        let link = `https://2a59-109-95-35-76.ngrok.io${url}`;
         return link;
       } else {
         return this.reserveImg;
